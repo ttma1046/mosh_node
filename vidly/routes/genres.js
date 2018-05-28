@@ -8,17 +8,17 @@ const genres = [
  { id: 3, name: 'genre3' },
 ];
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.send(genres);
 });
 
-app.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const genre = genres.find(c => c.id === parseInt(req.params.id));
     if (!genre) return res.status(404).send('The genre with the given ID was not found.'); // 404
     res.send(genre);
 });
 
-app.post('/', (req, res) => {
+router.post('/', (req, res) => {
     const { error } = validateGenre(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
     res.send(genre);
 });
 
-app.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     // Look up the genre
     // If not existing, return 404
     const genre = genres.find(c => c.id === parseInt(req.params.id));
@@ -47,7 +47,7 @@ app.put('/:id', (req, res) => {
     res.send(genre);
 });
 
-app.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     // look up the genre
     // Not existing ,return 404
     const genre = genres.find(c => c.id === parseInt(req.params.id));

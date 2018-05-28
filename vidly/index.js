@@ -1,6 +1,8 @@
 const Joi = require('joi');
 const home = require('./routes/home');
 const genres = require('./routes/genres');
+const users = require('./routers/users');
+const auth = require('./routers/auth');
 const express = require('express');
 const app = express();
 
@@ -17,6 +19,8 @@ app.use(helmet());
 
 app.use('/', home);
 app.use('/api/genres', genres);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // PORT
 const port = process.env.PORT || 3000;
